@@ -1,14 +1,17 @@
-name: Build Material You Standalone APK
+name: Build and Release Material You APK
 
 on:
   push:
     branches:
       - main
       - master
-  workflow_dispatch: # Allows you to run the build manually anytime
+  workflow_dispatch: # Allows manual trigger from the Actions tab
+
+permissions:
+  contents: write # Crucial permission required to create releases and upload assets
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,9 +31,16 @@ jobs:
       - name: Build Standalone Debug APK
         run: ./gradlew assembleDebug
 
-      - name: Upload Finished APK Artifact
-        uses: actions/upload-artifact@v4
+      - name: Generate Dynamic Version Tag
+        id: tag
+        run: echo "version_tag=v$(date +'%Y.%m.%d.%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Create Release and Upload APK
+        uses: softprops/action-gh-release@v2
         with:
-          name: standalone-material-you-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 7
+          tag_name: ${{ steps.tag.outputs.version_tag }}
+          name: "Material You Build - ${{ steps.tag.outputs.version_tag }}"
+          body: "Automated standalone APK build compiled directly from Google AI Studio source files."
+          draft: false
+          prerelease: true
+          files: app/build/outputs/apk/debug/app-debug.apk
