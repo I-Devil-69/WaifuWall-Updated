@@ -1,0 +1,6 @@
+{
+  "name": "Waifu Walls",
+  "description": "Native anime & waifu wallpaper app featuring dynamic Material You design, multi-source API integration, advanced search filters, offline Room favorites, and custom wallpaper setup.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
