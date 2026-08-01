@@ -28,7 +28,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: Generate Dynamic Version Tag
         id: tag
@@ -40,15 +40,6 @@ jobs:
           tag_name: ${{ steps.tag.outputs.version_tag }}
           name: "Material You Build - ${{ steps.tag.outputs.version_tag }}"
           body: "Automated standalone APK build"
-          draft: false
-          prerelease: true
-          files: app/build/outputs/apk/debug/app-debug.apk
-      - name: Create Release and Upload APK
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.tag.outputs.version_tag }}
-          name: "Material You Build - ${{ steps.tag.outputs.version_tag }}"
-          body: "Automated standalone APK build compiled directly from Google AI Studio source files."
           draft: false
           prerelease: true
           files: app/build/outputs/apk/debug/app-debug.apk
