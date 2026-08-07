@@ -28,7 +28,7 @@ Waifu Walls is a native Android wallpaper app focused on anime / "waifu" wallpap
 ## Quick start
 
 1. Clone the repository
-   git clone https://github.com/I-Devil-69/WaifuWall.git
+   git clone https://github.com/MohitEvil/WaifuWall.git
    cd WaifuWall
 
 2. Open in Android Studio
@@ -90,5 +90,5 @@ No license file detected in the repository. If you plan to publish or allow cont
 ---
 
 ## Maintainer
-Repository: https://github.com/I-Devil-69/WaifuWall
-Owner: I-Devil-69
+Repository: https://github.com/MohitEvil/WaifuWall
+Owner: MohitEvil (I-Devil-69)
